@@ -10,7 +10,7 @@ class RequestService {
 
   RequestService._internal();
 
-  static const String _currentPath = 'http://smktesting.herokuapp.com/api';
+  static const String _currentPath = 'https://smktesting.herokuapp.com/api';
 
   final Dio _dio = Dio(
     BaseOptions(responseType: ResponseType.json),
@@ -20,18 +20,27 @@ class RequestService {
     String username,
     String password,
   ) async {
-    return await _dio.post(
-      _currentPath + '/login',
-      data: {
-        "username": username,
-        "password": password,
-      },
-    ).then(
-      (value) => LoginResponse(
-        value.data['success'],
-        value.data['token'],
-      ),
-    );
+    LoginResponse _response;
+    
+    try {
+      _response = await _dio.post(
+        _currentPath + '/login',
+        data: {
+          "username": username,
+          "password": password,
+        },
+      ).then(
+        (value) => LoginResponse(
+          value.data['success'],
+          value.data['token'],
+        ),
+      );
+    } on DioError catch (e) {
+      print(e);
+      _response = LoginResponse('false', 'token');
+    }
+
+    return _response;
   }
 
   Future<RegisterResponse> register(
