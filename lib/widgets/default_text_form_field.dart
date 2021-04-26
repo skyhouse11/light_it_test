@@ -5,17 +5,17 @@ class DefaultTextFormField extends StatefulWidget {
   final bool isPassword;
   final IconData icon;
   final String? Function(String?) validator;
-  final String? Function(String?) onSubmit;
+  final String? Function(String?) onSaved;
   final TextInputType type;
 
   const DefaultTextFormField({
     Key? key,
     this.label = '',
     this.isPassword = false,
-    this.icon = Icons.email,
+    this.icon = Icons.person,
     required this.validator,
-    required this.onSubmit,
-    this.type = TextInputType.emailAddress,
+    required this.onSaved,
+    this.type = TextInputType.text,
   }) : super(key: key);
 
   @override
@@ -51,7 +51,7 @@ class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
         ),
         validator: widget.validator,
         obscureText: widget.isPassword ? _isObscured : false,
-        onFieldSubmitted: widget.onSubmit,
+        onSaved: widget.onSaved,
       ),
     );
   }

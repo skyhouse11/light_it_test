@@ -20,27 +20,18 @@ class RequestService {
     String username,
     String password,
   ) async {
-    LoginResponse _response;
-    
-    try {
-      _response = await _dio.post(
-        _currentPath + '/login',
-        data: {
-          "username": username,
-          "password": password,
-        },
-      ).then(
-        (value) => LoginResponse(
-          value.data['success'],
-          value.data['token'],
-        ),
-      );
-    } on DioError catch (e) {
-      print(e);
-      _response = LoginResponse('false', 'token');
-    }
-
-    return _response;
+    return await _dio.post(
+      _currentPath + '/login',
+      data: {
+        "username": username,
+        "password": password,
+      },
+    ).then(
+      (value) => LoginResponse(
+        value.data['success'],
+        value.data['token'],
+      ),
+    );
   }
 
   Future<RegisterResponse> register(

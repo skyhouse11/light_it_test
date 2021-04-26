@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:light_it_test/bloc/login/login_bloc.dart';
 import 'package:light_it_test/bloc/login/login_event.dart';
+import 'package:light_it_test/bloc/login/login_state.dart';
 import 'package:light_it_test/screen/register_screen.dart';
 import 'package:light_it_test/widgets/name_password_form.dart';
 
@@ -27,59 +29,94 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     final _size = MediaQuery.of(context).size;
 
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Container(
-        height: _size.height,
-        width: _size.width,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.store,
-              size: 120,
-            ),
-            Text(
-              'Welcome to the market!',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
+    return BlocBuilder<LoginBloc, LoginState>(
+      bloc: _bloc,
+      builder: (context, state) {
+        if (state == LoginState.error())
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                'Unsuccessfull login, please, check your input',
               ),
             ),
-            NamePasswordForm(_formKey),
-            SizedBox(
-              height: 120,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  _bloc.add(LoginEvent.fetch());
-                }
-              },
-              child: Text(
-                'Login',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
+          );
+
+        return Scaffold(
+          resizeToAvoidBottomInset: false,
+          body: Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                height: _size.height,
+                width: _size.width,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.store,
+                      size: 120,
+                    ),
+                    Text(
+                      'Welcome to the market!',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    NamePasswordForm(
+                      _formKey,
+                      onSavedUsername: (value) {
+                        _bloc.saveUsername(value!);
+                      },
+                      onSavedPassword: (value) {
+                        _bloc.savePassword(value!);
+                      },
+                    ),
+                    SizedBox(
+                      height: 120,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          _formKey.currentState!.save();
+                          _bloc.add(LoginEvent.fetch());
+                        }
+                      },
+                      child: Text(
+                        'Login',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(
+                          context,
+                          RegisterScreen.route,
+                        );
+                      },
+                      child: Text(
+                        'New user? Create an account',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    )
+                  ],
                 ),
               ),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.pushReplacementNamed(context, RegisterScreen.route);
-              },
-              child: Text(
-                'New user? Create an account',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
+              if (state == LoginState.loading()) CircularProgressIndicator(),
+            ],
+          ),
+        );
+      },
     );
   }
 }
