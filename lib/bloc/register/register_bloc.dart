@@ -35,7 +35,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
         return;
       }
 
-      if (_response.success == 'true') {
+      if (_response.success == true) {
         UserService().setUser(_username, _password, _response.token);
         yield RegisterState.success();
         NavigationService().navigateToRoute(ProductsScreen.route);

@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:light_it_test/models/models.dart';
+import 'package:light_it_test/service/user_service.dart';
 
 class RequestService {
   static final RequestService _singleton = RequestService._internal();
@@ -11,6 +12,10 @@ class RequestService {
   RequestService._internal();
 
   static const String _currentPath = 'https://smktesting.herokuapp.com/api';
+
+  static Options _authOptions = Options(
+    headers: {'Authorization': 'Token ${UserService().user!.id}'},
+  );
 
   final Dio _dio = Dio(
     BaseOptions(
@@ -26,16 +31,24 @@ class RequestService {
     String password,
   ) async {
     return await _dio.post(
-      _currentPath + '/login',
+      _currentPath + '/login/',
       data: {
         "username": username,
         "password": password,
       },
     ).then(
-      (value) => LoginResponse(
-        value.data['success'],
-        value.data['token'],
-      ),
+      (value) {
+        final _data = Map<String, dynamic>.from(value.data);
+
+        if (_data.containsKey('message')) {
+          return LoginResponse(false, '');
+        }
+
+        return LoginResponse(
+          _data['success'],
+          _data['token'],
+        );
+      },
     );
   }
 
@@ -44,27 +57,36 @@ class RequestService {
     String password,
   ) async {
     return await _dio.post(
-      _currentPath + '/register',
+      _currentPath + '/register/',
       data: {
         "username": username,
         "password": password,
       },
     ).then(
-      (value) => RegisterResponse(
-        value.data['success'],
-        value.data['token'],
-      ),
+      (value) {
+        final _data = Map<String, dynamic>.from(value.data);
+
+        if (_data.containsKey('message')) {
+          return RegisterResponse(false, '');
+        }
+
+        return RegisterResponse(
+          value.data['success'],
+          value.data['token'],
+        );
+      },
     );
   }
 
   Future<ProductsResponse> getProducts() async {
     return await _dio
         .get(
-          _currentPath + '/products',
+          _currentPath + '/products/',
+          options: _authOptions,
         )
         .then(
           (value) => ProductsResponse(
-            value.data,
+            List<Map<String, dynamic>>.from(value.data),
           ),
         );
   }
@@ -73,6 +95,7 @@ class RequestService {
     return await _dio
         .get(
           _currentPath + '/products/$productId/',
+          options: _authOptions,
         )
         .then(
           (value) => CommentsResponse(
@@ -88,6 +111,7 @@ class RequestService {
   ) async {
     return await _dio.post(
       _currentPath + '/products/$productId/',
+      options: _authOptions,
       data: {
         'text': text,
         'rate': rate,

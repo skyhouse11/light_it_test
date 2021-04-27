@@ -5,5 +5,5 @@ part 'register_response.freezed.dart';
 
 @freezed
 class RegisterResponse with _$RegisterResponse {
-  const factory RegisterResponse(String success, String token) = _RegisterResponse;
+  const factory RegisterResponse(bool success, String token) = _RegisterResponse;
 }

@@ -5,5 +5,5 @@ part 'login_response.freezed.dart';
 
 @freezed
 class LoginResponse with _$LoginResponse {
-  const factory LoginResponse(String success, String token) = _LoginResponse;
+  const factory LoginResponse(bool success, String token) = _LoginResponse;
 }

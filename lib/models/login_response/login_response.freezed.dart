@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$LoginResponseTearOff {
   const _$LoginResponseTearOff();
 
-  _LoginResponse call(String success, String token) {
+  _LoginResponse call(bool success, String token) {
     return _LoginResponse(
       success,
       token,
@@ -29,7 +29,7 @@ const $LoginResponse = _$LoginResponseTearOff();
 
 /// @nodoc
 mixin _$LoginResponse {
-  String get success => throw _privateConstructorUsedError;
+  bool get success => throw _privateConstructorUsedError;
   String get token => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -42,7 +42,7 @@ abstract class $LoginResponseCopyWith<$Res> {
   factory $LoginResponseCopyWith(
           LoginResponse value, $Res Function(LoginResponse) then) =
       _$LoginResponseCopyWithImpl<$Res>;
-  $Res call({String success, String token});
+  $Res call({bool success, String token});
 }
 
 /// @nodoc
@@ -63,7 +63,7 @@ class _$LoginResponseCopyWithImpl<$Res>
       success: success == freezed
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
-              as String,
+              as bool,
       token: token == freezed
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
@@ -79,7 +79,7 @@ abstract class _$LoginResponseCopyWith<$Res>
           _LoginResponse value, $Res Function(_LoginResponse) then) =
       __$LoginResponseCopyWithImpl<$Res>;
   @override
-  $Res call({String success, String token});
+  $Res call({bool success, String token});
 }
 
 /// @nodoc
@@ -102,7 +102,7 @@ class __$LoginResponseCopyWithImpl<$Res>
       success == freezed
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
-              as String,
+              as bool,
       token == freezed
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
@@ -117,7 +117,7 @@ class _$_LoginResponse with DiagnosticableTreeMixin implements _LoginResponse {
   const _$_LoginResponse(this.success, this.token);
 
   @override
-  final String success;
+  final bool success;
   @override
   final String token;
 
@@ -159,10 +159,10 @@ class _$_LoginResponse with DiagnosticableTreeMixin implements _LoginResponse {
 }
 
 abstract class _LoginResponse implements LoginResponse {
-  const factory _LoginResponse(String success, String token) = _$_LoginResponse;
+  const factory _LoginResponse(bool success, String token) = _$_LoginResponse;
 
   @override
-  String get success => throw _privateConstructorUsedError;
+  bool get success => throw _privateConstructorUsedError;
   @override
   String get token => throw _privateConstructorUsedError;
   @override

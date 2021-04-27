@@ -12,17 +12,25 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Product _$ProductFromJson(Map<String, dynamic> json) {
+  return _Product.fromJson(json);
+}
+
 /// @nodoc
 class _$ProductTearOff {
   const _$ProductTearOff();
 
-  _Product call(String title, String id, String text, String image) {
+  _Product call(String title, int id, String text, String img) {
     return _Product(
       title,
       id,
       text,
-      image,
+      img,
     );
+  }
+
+  Product fromJson(Map<String, Object> json) {
+    return Product.fromJson(json);
   }
 }
 
@@ -32,10 +40,11 @@ const $Product = _$ProductTearOff();
 /// @nodoc
 mixin _$Product {
   String get title => throw _privateConstructorUsedError;
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   String get text => throw _privateConstructorUsedError;
-  String get image => throw _privateConstructorUsedError;
+  String get img => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ProductCopyWith<Product> get copyWith => throw _privateConstructorUsedError;
 }
@@ -44,7 +53,7 @@ mixin _$Product {
 abstract class $ProductCopyWith<$Res> {
   factory $ProductCopyWith(Product value, $Res Function(Product) then) =
       _$ProductCopyWithImpl<$Res>;
-  $Res call({String title, String id, String text, String image});
+  $Res call({String title, int id, String text, String img});
 }
 
 /// @nodoc
@@ -60,7 +69,7 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
     Object? title = freezed,
     Object? id = freezed,
     Object? text = freezed,
-    Object? image = freezed,
+    Object? img = freezed,
   }) {
     return _then(_value.copyWith(
       title: title == freezed
@@ -70,14 +79,14 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       text: text == freezed
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
-      image: image == freezed
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
+      img: img == freezed
+          ? _value.img
+          : img // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -88,7 +97,7 @@ abstract class _$ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
   factory _$ProductCopyWith(_Product value, $Res Function(_Product) then) =
       __$ProductCopyWithImpl<$Res>;
   @override
-  $Res call({String title, String id, String text, String image});
+  $Res call({String title, int id, String text, String img});
 }
 
 /// @nodoc
@@ -105,7 +114,7 @@ class __$ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
     Object? title = freezed,
     Object? id = freezed,
     Object? text = freezed,
-    Object? image = freezed,
+    Object? img = freezed,
   }) {
     return _then(_Product(
       title == freezed
@@ -115,36 +124,39 @@ class __$ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
       id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       text == freezed
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
-      image == freezed
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
+      img == freezed
+          ? _value.img
+          : img // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Product with DiagnosticableTreeMixin implements _Product {
-  _$_Product(this.title, this.id, this.text, this.image);
+  const _$_Product(this.title, this.id, this.text, this.img);
+
+  factory _$_Product.fromJson(Map<String, dynamic> json) =>
+      _$_$_ProductFromJson(json);
 
   @override
   final String title;
   @override
-  final String id;
+  final int id;
   @override
   final String text;
   @override
-  final String image;
+  final String img;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Product(title: $title, id: $id, text: $text, image: $image)';
+    return 'Product(title: $title, id: $id, text: $text, img: $img)';
   }
 
   @override
@@ -155,7 +167,7 @@ class _$_Product with DiagnosticableTreeMixin implements _Product {
       ..add(DiagnosticsProperty('title', title))
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('text', text))
-      ..add(DiagnosticsProperty('image', image));
+      ..add(DiagnosticsProperty('img', img));
   }
 
   @override
@@ -168,8 +180,8 @@ class _$_Product with DiagnosticableTreeMixin implements _Product {
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.text, text) ||
                 const DeepCollectionEquality().equals(other.text, text)) &&
-            (identical(other.image, image) ||
-                const DeepCollectionEquality().equals(other.image, image)));
+            (identical(other.img, img) ||
+                const DeepCollectionEquality().equals(other.img, img)));
   }
 
   @override
@@ -178,26 +190,33 @@ class _$_Product with DiagnosticableTreeMixin implements _Product {
       const DeepCollectionEquality().hash(title) ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(text) ^
-      const DeepCollectionEquality().hash(image);
+      const DeepCollectionEquality().hash(img);
 
   @JsonKey(ignore: true)
   @override
   _$ProductCopyWith<_Product> get copyWith =>
       __$ProductCopyWithImpl<_Product>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_ProductToJson(this);
+  }
 }
 
 abstract class _Product implements Product {
-  factory _Product(String title, String id, String text, String image) =
+  const factory _Product(String title, int id, String text, String img) =
       _$_Product;
+
+  factory _Product.fromJson(Map<String, dynamic> json) = _$_Product.fromJson;
 
   @override
   String get title => throw _privateConstructorUsedError;
   @override
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   @override
   String get text => throw _privateConstructorUsedError;
   @override
-  String get image => throw _privateConstructorUsedError;
+  String get img => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ProductCopyWith<_Product> get copyWith =>

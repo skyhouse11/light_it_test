@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:light_it_test/screen/login_screen.dart';
+import 'package:light_it_test/screen/products_screen.dart';
 import 'package:light_it_test/screen/register_screen.dart';
 import 'package:light_it_test/service/navigation_service.dart';
 
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
       routes: {
         LoginScreen.route: (context) => LoginScreen(),
         RegisterScreen.route: (context) => RegisterScreen(),
+        ProductsScreen.route: (context) => ProductsScreen(),
       },
     );
   }
