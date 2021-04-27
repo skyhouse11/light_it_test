@@ -91,7 +91,7 @@ class RequestService {
         );
   }
 
-  Future<CommentsResponse> getComments(String productId) async {
+  Future<CommentsResponse> getComments(int productId) async {
     return await _dio
         .get(
           _currentPath + '/products/$productId/',
@@ -99,7 +99,7 @@ class RequestService {
         )
         .then(
           (value) => CommentsResponse(
-            value.data,
+            List<Map<String, dynamic>>.from(value.data),
           ),
         );
   }

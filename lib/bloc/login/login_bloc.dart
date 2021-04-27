@@ -33,7 +33,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         yield LoginState.error();
         return;
       }
-      
+
       if (_response.success == true) {
         UserService().setUser(_username, _password, _response.token);
         yield LoginState.success();

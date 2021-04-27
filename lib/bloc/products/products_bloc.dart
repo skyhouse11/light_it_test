@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:light_it_test/bloc/products/products_event.dart';
 import 'package:light_it_test/bloc/products/products_state.dart';
@@ -24,8 +23,6 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
         yield ProductsState.error();
         return;
       }
-
-      debugPrint('${_response.products}');
 
       yield ProductsState.success(
         _response.products.map((e) => Product.fromJson(e)).toList(),
