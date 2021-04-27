@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:light_it_test/bloc/register/register_bloc.dart';
+import 'package:light_it_test/bloc/register/register_event.dart';
 import 'package:light_it_test/bloc/register/register_state.dart';
+import 'package:light_it_test/screen/login_screen.dart';
+import 'package:light_it_test/widgets/name_password_form.dart';
+import 'package:light_it_test/service/navigation_service.dart';
 
 class RegisterScreen extends StatefulWidget {
   static const route = '/register';
@@ -27,6 +31,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     final _size = MediaQuery.of(context).size;
 
     return BlocBuilder<RegisterBloc, RegisterState>(
+      bloc: _bloc,
       builder: (context, state) {
         return Scaffold(
           resizeToAvoidBottomInset: false,
@@ -39,7 +44,63 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [],
+                  children: [
+                    Icon(
+                      Icons.store,
+                      size: 120,
+                    ),
+                    Text(
+                      'Register a new account',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    NamePasswordForm(
+                      _formKey,
+                      onSavedUsername: (value) {
+                        _bloc.saveUsername(value!);
+                      },
+                      onSavedPassword: (value) {
+                        _bloc.savePassword(value!);
+                      },
+                    ),
+                    SizedBox(
+                      height: 120,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          _formKey.currentState!.save();
+                          _bloc.add(RegisterEvent.fetch());
+                        }
+                      },
+                      child: Text(
+                        'Login',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        NavigationService().navigateToRoute(
+                          LoginScreen.route,
+                        );
+                      },
+                      child: Text(
+                        'Already have an account? Log in',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               if (state == RegisterState.loading()) CircularProgressIndicator()

@@ -2,8 +2,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:light_it_test/bloc/login/login_event.dart';
 import 'package:light_it_test/bloc/login/login_state.dart';
 import 'package:light_it_test/models/login_response/login_response.dart';
+import 'package:light_it_test/screen/products_screen.dart';
 import 'package:light_it_test/service/request_service.dart';
 import 'package:light_it_test/service/user_service.dart';
+import 'package:light_it_test/service/navigation_service.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc() : super(LoginState.initial());
@@ -37,6 +39,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       if (_response.success == 'true') {
         UserService().setUser(_username, _password, _response.token);
         yield LoginState.success();
+        NavigationService().navigateToRoute(ProductsScreen.route);
         return;
       } else {
         yield LoginState.error();

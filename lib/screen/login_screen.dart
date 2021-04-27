@@ -5,6 +5,7 @@ import 'package:light_it_test/bloc/login/login_event.dart';
 import 'package:light_it_test/bloc/login/login_state.dart';
 import 'package:light_it_test/screen/register_screen.dart';
 import 'package:light_it_test/widgets/name_password_form.dart';
+import 'package:light_it_test/service/navigation_service.dart';
 
 class LoginScreen extends StatefulWidget {
   static const route = '/';
@@ -96,8 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     TextButton(
                       onPressed: () {
-                        Navigator.pushReplacementNamed(
-                          context,
+                        NavigationService().navigateToRoute(
                           RegisterScreen.route,
                         );
                       },

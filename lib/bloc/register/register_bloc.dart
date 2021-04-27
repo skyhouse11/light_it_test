@@ -2,8 +2,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:light_it_test/bloc/register/register_event.dart';
 import 'package:light_it_test/bloc/register/register_state.dart';
 import 'package:light_it_test/models/register_response/register_response.dart';
+import 'package:light_it_test/screen/products_screen.dart';
 import 'package:light_it_test/service/request_service.dart';
 import 'package:light_it_test/service/user_service.dart';
+import 'package:light_it_test/service/navigation_service.dart';
 
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   RegisterBloc() : super(RegisterState.initial());
@@ -38,6 +40,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       if (_response.success == 'true') {
         UserService().setUser(username, password, _response.token);
         yield RegisterState.success();
+        NavigationService().navigateToRoute(ProductsScreen.route);
         return;
       } else {
         yield RegisterState.error();
