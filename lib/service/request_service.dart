@@ -13,7 +13,12 @@ class RequestService {
   static const String _currentPath = 'https://smktesting.herokuapp.com/api';
 
   final Dio _dio = Dio(
-    BaseOptions(responseType: ResponseType.json),
+    BaseOptions(
+      headers: {
+        'Content-Type': 'application/json',
+        'Connection': 'keep-alive',
+      },
+    ),
   );
 
   Future<LoginResponse> login(

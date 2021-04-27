@@ -11,14 +11,12 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   RegisterBloc() : super(RegisterState.initial());
 
   String _username = '';
-  String get username => _username;
 
   String _password = '';
-  String get password => _password;
 
   void saveUsername(String value) => _username = value;
 
-  void savePassword(String value) => _password = password;
+  void savePassword(String value) => _password = value;
 
   final _requestService = RequestService();
 
@@ -28,9 +26,9 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       yield RegisterState.loading();
 
       late RegisterResponse _response;
-      
+
       try {
-        _response = await _requestService.register(username, password);
+        _response = await _requestService.register(_username, _password);
       } catch (e) {
         print(e);
         yield RegisterState.error();
@@ -38,7 +36,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       }
 
       if (_response.success == 'true') {
-        UserService().setUser(username, password, _response.token);
+        UserService().setUser(_username, _password, _response.token);
         yield RegisterState.success();
         NavigationService().navigateToRoute(ProductsScreen.route);
         return;

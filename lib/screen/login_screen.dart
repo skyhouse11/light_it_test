@@ -33,15 +33,6 @@ class _LoginScreenState extends State<LoginScreen> {
     return BlocBuilder<LoginBloc, LoginState>(
       bloc: _bloc,
       builder: (context, state) {
-        if (state == LoginState.error())
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                'Unsuccessfull login, please, check your input',
-              ),
-            ),
-          );
-
         return Scaffold(
           resizeToAvoidBottomInset: false,
           body: Stack(
@@ -51,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: _size.height,
                 width: _size.width,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Icon(
@@ -74,9 +65,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         _bloc.savePassword(value!);
                       },
                     ),
-                    SizedBox(
-                      height: 120,
-                    ),
                     ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
@@ -93,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: 16,
+                      height: _size.height * 0.05,
                     ),
                     TextButton(
                       onPressed: () {

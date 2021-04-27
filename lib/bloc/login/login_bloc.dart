@@ -11,14 +11,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc() : super(LoginState.initial());
 
   String _username = '';
-  String get username => _username;
 
   String _password = '';
-  String get password => _password;
 
   void saveUsername(String value) => _username = value;
 
-  void savePassword(String value) => _password = password;
+  void savePassword(String value) => _password = value;
 
   final _requestService = RequestService();
 

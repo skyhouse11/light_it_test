@@ -42,11 +42,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 height: _size.height,
                 width: _size.width,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Icon(
-                      Icons.store,
+                      Icons.account_box,
                       size: 120,
                     ),
                     Text(
@@ -65,9 +65,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         _bloc.savePassword(value!);
                       },
                     ),
-                    SizedBox(
-                      height: 120,
-                    ),
                     ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
@@ -76,7 +73,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         }
                       },
                       child: Text(
-                        'Login',
+                        'Register',
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
@@ -84,7 +81,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: 16,
+                      height: _size.height * 0.05,
                     ),
                     TextButton(
                       onPressed: () {
