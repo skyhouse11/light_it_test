@@ -21,6 +21,14 @@ class _$SingleProductEventTearOff {
       id,
     );
   }
+
+  SingleProductPostEvent post(int rating, String text, int productId) {
+    return SingleProductPostEvent(
+      rating,
+      text,
+      productId,
+    );
+  }
 }
 
 /// @nodoc
@@ -28,33 +36,31 @@ const $SingleProductEvent = _$SingleProductEventTearOff();
 
 /// @nodoc
 mixin _$SingleProductEvent {
-  int get id => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int id) fetch,
+    required TResult Function(int rating, String text, int productId) post,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int id)? fetch,
+    TResult Function(int rating, String text, int productId)? post,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SingleProductFetchEvent value) fetch,
+    required TResult Function(SingleProductPostEvent value) post,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SingleProductFetchEvent value)? fetch,
+    TResult Function(SingleProductPostEvent value)? post,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $SingleProductEventCopyWith<SingleProductEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -63,7 +69,6 @@ abstract class $SingleProductEventCopyWith<$Res> {
   factory $SingleProductEventCopyWith(
           SingleProductEvent value, $Res Function(SingleProductEvent) then) =
       _$SingleProductEventCopyWithImpl<$Res>;
-  $Res call({int id});
 }
 
 /// @nodoc
@@ -74,27 +79,13 @@ class _$SingleProductEventCopyWithImpl<$Res>
   final SingleProductEvent _value;
   // ignore: unused_field
   final $Res Function(SingleProductEvent) _then;
-
-  @override
-  $Res call({
-    Object? id = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class $SingleProductFetchEventCopyWith<$Res>
-    implements $SingleProductEventCopyWith<$Res> {
+abstract class $SingleProductFetchEventCopyWith<$Res> {
   factory $SingleProductFetchEventCopyWith(SingleProductFetchEvent value,
           $Res Function(SingleProductFetchEvent) then) =
       _$SingleProductFetchEventCopyWithImpl<$Res>;
-  @override
   $Res call({int id});
 }
 
@@ -157,6 +148,7 @@ class _$SingleProductFetchEvent implements SingleProductFetchEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int id) fetch,
+    required TResult Function(int rating, String text, int productId) post,
   }) {
     return fetch(id);
   }
@@ -165,6 +157,7 @@ class _$SingleProductFetchEvent implements SingleProductFetchEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int id)? fetch,
+    TResult Function(int rating, String text, int productId)? post,
     required TResult orElse(),
   }) {
     if (fetch != null) {
@@ -177,6 +170,7 @@ class _$SingleProductFetchEvent implements SingleProductFetchEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SingleProductFetchEvent value) fetch,
+    required TResult Function(SingleProductPostEvent value) post,
   }) {
     return fetch(this);
   }
@@ -185,6 +179,7 @@ class _$SingleProductFetchEvent implements SingleProductFetchEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SingleProductFetchEvent value)? fetch,
+    TResult Function(SingleProductPostEvent value)? post,
     required TResult orElse(),
   }) {
     if (fetch != null) {
@@ -197,10 +192,150 @@ class _$SingleProductFetchEvent implements SingleProductFetchEvent {
 abstract class SingleProductFetchEvent implements SingleProductEvent {
   const factory SingleProductFetchEvent(int id) = _$SingleProductFetchEvent;
 
-  @override
   int get id => throw _privateConstructorUsedError;
-  @override
   @JsonKey(ignore: true)
   $SingleProductFetchEventCopyWith<SingleProductFetchEvent> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SingleProductPostEventCopyWith<$Res> {
+  factory $SingleProductPostEventCopyWith(SingleProductPostEvent value,
+          $Res Function(SingleProductPostEvent) then) =
+      _$SingleProductPostEventCopyWithImpl<$Res>;
+  $Res call({int rating, String text, int productId});
+}
+
+/// @nodoc
+class _$SingleProductPostEventCopyWithImpl<$Res>
+    extends _$SingleProductEventCopyWithImpl<$Res>
+    implements $SingleProductPostEventCopyWith<$Res> {
+  _$SingleProductPostEventCopyWithImpl(SingleProductPostEvent _value,
+      $Res Function(SingleProductPostEvent) _then)
+      : super(_value, (v) => _then(v as SingleProductPostEvent));
+
+  @override
+  SingleProductPostEvent get _value => super._value as SingleProductPostEvent;
+
+  @override
+  $Res call({
+    Object? rating = freezed,
+    Object? text = freezed,
+    Object? productId = freezed,
+  }) {
+    return _then(SingleProductPostEvent(
+      rating == freezed
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as int,
+      text == freezed
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as String,
+      productId == freezed
+          ? _value.productId
+          : productId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SingleProductPostEvent implements SingleProductPostEvent {
+  const _$SingleProductPostEvent(this.rating, this.text, this.productId);
+
+  @override
+  final int rating;
+  @override
+  final String text;
+  @override
+  final int productId;
+
+  @override
+  String toString() {
+    return 'SingleProductEvent.post(rating: $rating, text: $text, productId: $productId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is SingleProductPostEvent &&
+            (identical(other.rating, rating) ||
+                const DeepCollectionEquality().equals(other.rating, rating)) &&
+            (identical(other.text, text) ||
+                const DeepCollectionEquality().equals(other.text, text)) &&
+            (identical(other.productId, productId) ||
+                const DeepCollectionEquality()
+                    .equals(other.productId, productId)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(rating) ^
+      const DeepCollectionEquality().hash(text) ^
+      const DeepCollectionEquality().hash(productId);
+
+  @JsonKey(ignore: true)
+  @override
+  $SingleProductPostEventCopyWith<SingleProductPostEvent> get copyWith =>
+      _$SingleProductPostEventCopyWithImpl<SingleProductPostEvent>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int id) fetch,
+    required TResult Function(int rating, String text, int productId) post,
+  }) {
+    return post(rating, text, productId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int id)? fetch,
+    TResult Function(int rating, String text, int productId)? post,
+    required TResult orElse(),
+  }) {
+    if (post != null) {
+      return post(rating, text, productId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SingleProductFetchEvent value) fetch,
+    required TResult Function(SingleProductPostEvent value) post,
+  }) {
+    return post(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SingleProductFetchEvent value)? fetch,
+    TResult Function(SingleProductPostEvent value)? post,
+    required TResult orElse(),
+  }) {
+    if (post != null) {
+      return post(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SingleProductPostEvent implements SingleProductEvent {
+  const factory SingleProductPostEvent(int rating, String text, int productId) =
+      _$SingleProductPostEvent;
+
+  int get rating => throw _privateConstructorUsedError;
+  String get text => throw _privateConstructorUsedError;
+  int get productId => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $SingleProductPostEventCopyWith<SingleProductPostEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }

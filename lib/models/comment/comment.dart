@@ -6,7 +6,14 @@ part 'comment.g.dart';
 
 @freezed
 class Comment with _$Comment {
-  const factory Comment(double rate, String text, String userId, String entryId, {String? id}) = _Comment;
+  const factory Comment(
+    int id,
+    int product,
+    Map<String, dynamic> created_by,
+    String created_at,
+    int rate,
+    String text,
+  ) = _Comment;
 
   factory Comment.fromJson(Map<String, dynamic> json) => _$CommentFromJson(json);
 }

@@ -5,5 +5,5 @@ part 'post_comment_response.freezed.dart';
 
 @freezed
 class PostCommentResponse with _$PostCommentResponse {
-  const factory PostCommentResponse(String id) = _PostCommentResponse;
+  const factory PostCommentResponse(bool success) = _PostCommentResponse;
 }

@@ -94,7 +94,7 @@ class RequestService {
   Future<CommentsResponse> getComments(int productId) async {
     return await _dio
         .get(
-          _currentPath + '/products/$productId/',
+          _currentPath + '/reviews/$productId',
           options: _authOptions,
         )
         .then(
@@ -105,21 +105,25 @@ class RequestService {
   }
 
   Future<PostCommentResponse> postComment(
-    String productId,
-    double rate,
+    int productId,
+    int rate,
     String text,
   ) async {
     return await _dio.post(
-      _currentPath + '/products/$productId/',
+      _currentPath + '/reviews/$productId',
       options: _authOptions,
       data: {
         'text': text,
         'rate': rate,
       },
     ).then(
-      (value) => PostCommentResponse(
-        value.data,
-      ),
+      (value) {
+        final _data = Map<String, dynamic>.from(value.data);
+
+        return PostCommentResponse(
+          value.data['success'],
+        );
+      },
     );
   }
 }

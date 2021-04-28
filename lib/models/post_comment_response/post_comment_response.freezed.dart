@@ -16,9 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$PostCommentResponseTearOff {
   const _$PostCommentResponseTearOff();
 
-  _PostCommentResponse call(String id) {
+  _PostCommentResponse call(bool success) {
     return _PostCommentResponse(
-      id,
+      success,
     );
   }
 }
@@ -28,7 +28,7 @@ const $PostCommentResponse = _$PostCommentResponseTearOff();
 
 /// @nodoc
 mixin _$PostCommentResponse {
-  String get id => throw _privateConstructorUsedError;
+  bool get success => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PostCommentResponseCopyWith<PostCommentResponse> get copyWith =>
@@ -40,7 +40,7 @@ abstract class $PostCommentResponseCopyWith<$Res> {
   factory $PostCommentResponseCopyWith(
           PostCommentResponse value, $Res Function(PostCommentResponse) then) =
       _$PostCommentResponseCopyWithImpl<$Res>;
-  $Res call({String id});
+  $Res call({bool success});
 }
 
 /// @nodoc
@@ -54,13 +54,13 @@ class _$PostCommentResponseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? id = freezed,
+    Object? success = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
+      success: success == freezed
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -72,7 +72,7 @@ abstract class _$PostCommentResponseCopyWith<$Res>
           $Res Function(_PostCommentResponse) then) =
       __$PostCommentResponseCopyWithImpl<$Res>;
   @override
-  $Res call({String id});
+  $Res call({bool success});
 }
 
 /// @nodoc
@@ -88,13 +88,13 @@ class __$PostCommentResponseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? id = freezed,
+    Object? success = freezed,
   }) {
     return _then(_PostCommentResponse(
-      id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
+      success == freezed
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -104,14 +104,14 @@ class __$PostCommentResponseCopyWithImpl<$Res>
 class _$_PostCommentResponse
     with DiagnosticableTreeMixin
     implements _PostCommentResponse {
-  const _$_PostCommentResponse(this.id);
+  const _$_PostCommentResponse(this.success);
 
   @override
-  final String id;
+  final bool success;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'PostCommentResponse(id: $id)';
+    return 'PostCommentResponse(success: $success)';
   }
 
   @override
@@ -119,20 +119,20 @@ class _$_PostCommentResponse
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'PostCommentResponse'))
-      ..add(DiagnosticsProperty('id', id));
+      ..add(DiagnosticsProperty('success', success));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _PostCommentResponse &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)));
+            (identical(other.success, success) ||
+                const DeepCollectionEquality().equals(other.success, success)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(id);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(success);
 
   @JsonKey(ignore: true)
   @override
@@ -142,10 +142,10 @@ class _$_PostCommentResponse
 }
 
 abstract class _PostCommentResponse implements PostCommentResponse {
-  const factory _PostCommentResponse(String id) = _$_PostCommentResponse;
+  const factory _PostCommentResponse(bool success) = _$_PostCommentResponse;
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  bool get success => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$PostCommentResponseCopyWith<_PostCommentResponse> get copyWith =>

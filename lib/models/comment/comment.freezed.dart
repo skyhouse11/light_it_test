@@ -20,14 +20,15 @@ Comment _$CommentFromJson(Map<String, dynamic> json) {
 class _$CommentTearOff {
   const _$CommentTearOff();
 
-  _Comment call(double rate, String text, String userId, String entryId,
-      {String? id}) {
+  _Comment call(int id, int product, Map<String, dynamic> created_by,
+      String created_at, int rate, String text) {
     return _Comment(
+      id,
+      product,
+      created_by,
+      created_at,
       rate,
       text,
-      userId,
-      entryId,
-      id: id,
     );
   }
 
@@ -41,11 +42,12 @@ const $Comment = _$CommentTearOff();
 
 /// @nodoc
 mixin _$Comment {
-  double get rate => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  int get product => throw _privateConstructorUsedError;
+  Map<String, dynamic> get created_by => throw _privateConstructorUsedError;
+  String get created_at => throw _privateConstructorUsedError;
+  int get rate => throw _privateConstructorUsedError;
   String get text => throw _privateConstructorUsedError;
-  String get userId => throw _privateConstructorUsedError;
-  String get entryId => throw _privateConstructorUsedError;
-  String? get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -57,7 +59,12 @@ abstract class $CommentCopyWith<$Res> {
   factory $CommentCopyWith(Comment value, $Res Function(Comment) then) =
       _$CommentCopyWithImpl<$Res>;
   $Res call(
-      {double rate, String text, String userId, String entryId, String? id});
+      {int id,
+      int product,
+      Map<String, dynamic> created_by,
+      String created_at,
+      int rate,
+      String text});
 }
 
 /// @nodoc
@@ -70,33 +77,38 @@ class _$CommentCopyWithImpl<$Res> implements $CommentCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? id = freezed,
+    Object? product = freezed,
+    Object? created_by = freezed,
+    Object? created_at = freezed,
     Object? rate = freezed,
     Object? text = freezed,
-    Object? userId = freezed,
-    Object? entryId = freezed,
-    Object? id = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      product: product == freezed
+          ? _value.product
+          : product // ignore: cast_nullable_to_non_nullable
+              as int,
+      created_by: created_by == freezed
+          ? _value.created_by
+          : created_by // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+      created_at: created_at == freezed
+          ? _value.created_at
+          : created_at // ignore: cast_nullable_to_non_nullable
+              as String,
       rate: rate == freezed
           ? _value.rate
           : rate // ignore: cast_nullable_to_non_nullable
-              as double,
+              as int,
       text: text == freezed
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
-      userId: userId == freezed
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      entryId: entryId == freezed
-          ? _value.entryId
-          : entryId // ignore: cast_nullable_to_non_nullable
-              as String,
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -107,7 +119,12 @@ abstract class _$CommentCopyWith<$Res> implements $CommentCopyWith<$Res> {
       __$CommentCopyWithImpl<$Res>;
   @override
   $Res call(
-      {double rate, String text, String userId, String entryId, String? id});
+      {int id,
+      int product,
+      Map<String, dynamic> created_by,
+      String created_at,
+      int rate,
+      String text});
 }
 
 /// @nodoc
@@ -121,33 +138,38 @@ class __$CommentCopyWithImpl<$Res> extends _$CommentCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
+    Object? product = freezed,
+    Object? created_by = freezed,
+    Object? created_at = freezed,
     Object? rate = freezed,
     Object? text = freezed,
-    Object? userId = freezed,
-    Object? entryId = freezed,
-    Object? id = freezed,
   }) {
     return _then(_Comment(
+      id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      product == freezed
+          ? _value.product
+          : product // ignore: cast_nullable_to_non_nullable
+              as int,
+      created_by == freezed
+          ? _value.created_by
+          : created_by // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+      created_at == freezed
+          ? _value.created_at
+          : created_at // ignore: cast_nullable_to_non_nullable
+              as String,
       rate == freezed
           ? _value.rate
           : rate // ignore: cast_nullable_to_non_nullable
-              as double,
+              as int,
       text == freezed
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
-      userId == freezed
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      entryId == freezed
-          ? _value.entryId
-          : entryId // ignore: cast_nullable_to_non_nullable
-              as String,
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -155,25 +177,28 @@ class __$CommentCopyWithImpl<$Res> extends _$CommentCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Comment with DiagnosticableTreeMixin implements _Comment {
-  const _$_Comment(this.rate, this.text, this.userId, this.entryId, {this.id});
+  const _$_Comment(this.id, this.product, this.created_by, this.created_at,
+      this.rate, this.text);
 
   factory _$_Comment.fromJson(Map<String, dynamic> json) =>
       _$_$_CommentFromJson(json);
 
   @override
-  final double rate;
+  final int id;
+  @override
+  final int product;
+  @override
+  final Map<String, dynamic> created_by;
+  @override
+  final String created_at;
+  @override
+  final int rate;
   @override
   final String text;
-  @override
-  final String userId;
-  @override
-  final String entryId;
-  @override
-  final String? id;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Comment(rate: $rate, text: $text, userId: $userId, entryId: $entryId, id: $id)';
+    return 'Comment(id: $id, product: $product, created_by: $created_by, created_at: $created_at, rate: $rate, text: $text)';
   }
 
   @override
@@ -181,38 +206,44 @@ class _$_Comment with DiagnosticableTreeMixin implements _Comment {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'Comment'))
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('product', product))
+      ..add(DiagnosticsProperty('created_by', created_by))
+      ..add(DiagnosticsProperty('created_at', created_at))
       ..add(DiagnosticsProperty('rate', rate))
-      ..add(DiagnosticsProperty('text', text))
-      ..add(DiagnosticsProperty('userId', userId))
-      ..add(DiagnosticsProperty('entryId', entryId))
-      ..add(DiagnosticsProperty('id', id));
+      ..add(DiagnosticsProperty('text', text));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _Comment &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.product, product) ||
+                const DeepCollectionEquality()
+                    .equals(other.product, product)) &&
+            (identical(other.created_by, created_by) ||
+                const DeepCollectionEquality()
+                    .equals(other.created_by, created_by)) &&
+            (identical(other.created_at, created_at) ||
+                const DeepCollectionEquality()
+                    .equals(other.created_at, created_at)) &&
             (identical(other.rate, rate) ||
                 const DeepCollectionEquality().equals(other.rate, rate)) &&
             (identical(other.text, text) ||
-                const DeepCollectionEquality().equals(other.text, text)) &&
-            (identical(other.userId, userId) ||
-                const DeepCollectionEquality().equals(other.userId, userId)) &&
-            (identical(other.entryId, entryId) ||
-                const DeepCollectionEquality()
-                    .equals(other.entryId, entryId)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)));
+                const DeepCollectionEquality().equals(other.text, text)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(product) ^
+      const DeepCollectionEquality().hash(created_by) ^
+      const DeepCollectionEquality().hash(created_at) ^
       const DeepCollectionEquality().hash(rate) ^
-      const DeepCollectionEquality().hash(text) ^
-      const DeepCollectionEquality().hash(userId) ^
-      const DeepCollectionEquality().hash(entryId) ^
-      const DeepCollectionEquality().hash(id);
+      const DeepCollectionEquality().hash(text);
 
   @JsonKey(ignore: true)
   @override
@@ -226,22 +257,23 @@ class _$_Comment with DiagnosticableTreeMixin implements _Comment {
 }
 
 abstract class _Comment implements Comment {
-  const factory _Comment(
-      double rate, String text, String userId, String entryId,
-      {String? id}) = _$_Comment;
+  const factory _Comment(int id, int product, Map<String, dynamic> created_by,
+      String created_at, int rate, String text) = _$_Comment;
 
   factory _Comment.fromJson(Map<String, dynamic> json) = _$_Comment.fromJson;
 
   @override
-  double get rate => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  @override
+  int get product => throw _privateConstructorUsedError;
+  @override
+  Map<String, dynamic> get created_by => throw _privateConstructorUsedError;
+  @override
+  String get created_at => throw _privateConstructorUsedError;
+  @override
+  int get rate => throw _privateConstructorUsedError;
   @override
   String get text => throw _privateConstructorUsedError;
-  @override
-  String get userId => throw _privateConstructorUsedError;
-  @override
-  String get entryId => throw _privateConstructorUsedError;
-  @override
-  String? get id => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$CommentCopyWith<_Comment> get copyWith =>
